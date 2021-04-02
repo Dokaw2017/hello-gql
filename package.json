@@ -1,0 +1,28 @@
+{
+  "name": "hello-gql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dokaw2017/hello-gql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dokaw2017/hello-gql/issues"
+  },
+  "homepage": "https://github.com/Dokaw2017/hello-gql#readme",
+  "type": "module",
+  "dependencies": {
+    "apollo-server-express": "^2.22.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "mongoose": "^5.12.3"
+  }
+}
