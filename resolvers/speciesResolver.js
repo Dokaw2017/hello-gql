@@ -1,18 +1,18 @@
-const speciesData = [
-  {
-    id: "1",
-    speciesName: "Cat",
-    category: "1",
-  },
-];
+import Species from "../models/species.js";
 
 export default {
   Animal: {
     species(parent) {
-      console.log("species", parent);
-      return speciesData
-        .filter((species) => species.id === parent.species)
-        .pop();
+      console.log(parent);
+      return Species.findById(parent.species);
+    },
+  },
+
+  Mutation: {
+    addSpecies: (parent, args) => {
+      console.log(args);
+      const newSpecies = new Species(args);
+      return newSpecies.save();
     },
   },
 };

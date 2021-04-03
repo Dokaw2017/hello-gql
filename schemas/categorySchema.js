@@ -5,4 +5,8 @@ export default gql`
     id: ID
     categoryName: String
   }
+
+  extend type Mutation {
+    addCategory(categoryName: String): Category
+  }
 `;

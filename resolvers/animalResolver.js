@@ -1,31 +1,28 @@
-const animalData = [
-  {
-    id: "1",
-    animalName: "Frank",
-    species: "1",
-  },
-];
-
-/*const speciesData = [
-  {
-    id: "1",
-    speciesName: "Cat",
-    category: "1",
-  },
-];
-
-const categoryData = [
-  {
-    id: "1",
-    categoryName: "Mammal",
-  },
-];
-*/
+import Animal from "../models/animal.js";
 
 export default {
   Query: {
     animals: (parent, args) => {
-      return animalData;
+      return Animal.find();
+    },
+    animal: (parent, args) => {
+      return Animal.findById(args.id);
+    },
+  },
+
+  Mutation: {
+    addAnimal: (parent, args) => {
+      console.log(args);
+      const newAnimal = new Animal(args);
+      return newAnimal.save();
+    },
+    modifyAnimal: (parent, args) => {
+      console.log(args);
+      const modifiedAnimal = {
+        animalName: args.animalName,
+        species: args.species,
+      };
+      return Animal.findByIdAndUpdate(args.id, modifiedAnimal);
     },
   },
 };
