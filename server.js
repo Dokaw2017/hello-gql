@@ -2,6 +2,7 @@ import { ApolloServer } from "apollo-server-express";
 import schemas from "./schemas/index.js";
 import resolvers from "./resolvers/index.js";
 import express from "express";
+import { checkAuth } from "./passport/authenticate.js";
 import connectMongo from "./db/db.js";
 import dotenv from "dotenv";
 
@@ -17,6 +18,17 @@ dotenv.config();
     const server = new ApolloServer({
       typeDefs: schemas,
       resolvers,
+      context: async ({ req, res }) => {
+        if (req) {
+          const user = await checkAuth(req, res);
+          console.log("app", user);
+          return {
+            req,
+            res,
+            user,
+          };
+        }
+      },
     });
 
     const app = express();

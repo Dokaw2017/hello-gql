@@ -1,4 +1,5 @@
 import Animal from "../models/animal.js";
+import { AuthenticationError } from "apollo-server-express";
 
 export default {
   Query: {
@@ -11,9 +12,13 @@ export default {
   },
 
   Mutation: {
-    addAnimal: (parent, args) => {
-      console.log(args);
+    addAnimal: (parent, args, { user }) => {
+      console.log("animalResolver, addAnimal", args, user);
+      if (!user) {
+        throw new AuthenticationError("you are not authenticated!!");
+      }
       const newAnimal = new Animal(args);
+      console.log(newAnimal.animalName, `🐒🧟`);
       return newAnimal.save();
     },
     modifyAnimal: (parent, args) => {
