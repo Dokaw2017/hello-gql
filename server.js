@@ -7,6 +7,8 @@ import connectMongo from "./db/db.js";
 import localhost from "./security/localhost.js";
 import production from "./security/production.js";
 import dotenv from "dotenv";
+//do that in your controler/resolver
+//import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -32,6 +34,13 @@ dotenv.config();
         }
       },
     });
+
+    const saltRound = 12; //okayish in 2021
+
+    // inside your user create/update async function
+    /*const myPwd = "bar";
+    const hash = await bcrypt.hash(myPwd, saltRound);
+    console.log("hashed password", hash);*/
 
     const app = express();
 
