@@ -7,6 +7,7 @@ import connectMongo from "./db/db.js";
 import localhost from "./security/localhost.js";
 import production from "./security/production.js";
 import dotenv from "dotenv";
+import helmet from "helmet";
 //do that in your controler/resolver
 //import bcrypt from "bcrypt";
 
@@ -43,6 +44,7 @@ dotenv.config();
     console.log("hashed password", hash);*/
 
     const app = express();
+    app.use(helmet());
 
     server.applyMiddleware({ app });
     process.env.NODE_ENV = process.env.NODE_ENV || "development";
