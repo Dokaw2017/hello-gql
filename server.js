@@ -4,15 +4,15 @@ import resolvers from "./resolvers/index.js";
 import express from "express";
 import { checkAuth } from "./passport/authenticate.js";
 import connectMongo from "./db/db.js";
-import dotenv from "dotenv";
-import http from "http";
 import https from "https";
+import http from "http";
 import fs from "fs";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const sslkey = fs.readFileSync("./ssl-key.pem");
-const sslcert = fs.readFileSync("./ssl-cert.pem");
+const sslkey = fs.readFileSync("../ssl-key.pem");
+const sslcert = fs.readFileSync("../ssl-cert.pem");
 
 const options = {
   key: sslkey,
@@ -45,7 +45,6 @@ const options = {
     const app = express();
 
     server.applyMiddleware({ app });
-
     /*app.listen({ port: 3000 }, () =>
       console.log(
         `🚀 Server ready at http://localhost:3000${server.graphqlPath}`
